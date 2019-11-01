@@ -1,0 +1,8 @@
+.card {
+    display: flex;
+    align-items: flex-start;
+}
+
+.value {
+    font-size: 70px;
+}

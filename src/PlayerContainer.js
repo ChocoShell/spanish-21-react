@@ -9,8 +9,13 @@ class PlayerContainer extends Component {
   }
 
   render() {
+    const {cards, bust} = this.props.player
     return (
-     <Player id={this.props.id}/>
+     <Player
+      id={this.props.id}
+      cards={cards}
+      bust={bust}
+    />
     )
   }
 }
