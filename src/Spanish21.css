@@ -1,0 +1,19 @@
+.players {
+    outline: 2px solid blue;
+    display: flex;
+    padding: 5px;
+    margin: 10px;
+}
+
+.game {
+    outline: 2px solid black;
+    margin: 10px;
+    padding: 5px;
+}
+
+.dealerside {
+    outline: 2px solid pink;
+    margin: 10px;
+    padding: 5px;
+    display: flex;   
+}
