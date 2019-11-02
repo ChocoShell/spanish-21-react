@@ -5,11 +5,13 @@ import Card from './CardContainer';
 
 const Player = props => {
   return (
-    <div className="player" id={props.id} cards={props.cards}>
+    <div className="player" id={props.id}>
       {props.bust && "BUSTED"}
       { !props.bust &&
         <div>
-          Player {props.id} goes here
+          <div>
+            Player {props.id}: {props.total}
+          </div>
           {
             props.cards.map(
               (card, index) => {

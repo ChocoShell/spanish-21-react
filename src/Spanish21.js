@@ -28,14 +28,17 @@ class Spanish21 extends Component {
   }
   dealRound() {
     this.state.players.map(
-      player => player.cards = [this.dealCard()]
+      player => player.cards = [this.dealCard(), this.dealCard(), this.dealCard()]
     )
     this.setState({players: this.state.players})
   }
 
   dealCard() {
+
     const card = this.state.shoe.pop()
-    this.setState({shoe: this.state.shoe, card})
+    const shoe =  this.state.shoe.length === 0 ? shuffle(getDecks(8)) : this.state.shoe
+    this.setState({shoe, card})
+    console.log(card)
     return card
   }
   // Game should have min and max bet

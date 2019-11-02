@@ -1,4 +1,11 @@
 .card {
+    display: inline-block;
+    outline: 2px solid black;
+    padding: 5px;
+    margin: 10px;
+}
+
+.card-content {
     display: flex;
     align-items: flex-start;
 }

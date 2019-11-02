@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Player from './Player';
+import {sumCards} from './utils';
 
 class PlayerContainer extends Component {
   state = {
@@ -10,10 +11,12 @@ class PlayerContainer extends Component {
 
   render() {
     const {cards, bust} = this.props.player
+    const total = sumCards(cards)
     return (
      <Player
       id={this.props.id}
       cards={cards}
+      total={total}
       bust={bust}
     />
     )

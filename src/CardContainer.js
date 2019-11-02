@@ -7,8 +7,8 @@ class CardContainer extends Component {
     console.log(this.props.card)
     return (
       <Card
-        value={this.props.card && this.props.card.Value}
-        suit={this.props.card && this.props.card.Suit}
+        value={this.props.card && this.props.card.rank}
+        suit={this.props.card && this.props.card.suit}
       />
     )
   }
