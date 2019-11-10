@@ -15,7 +15,7 @@ const Player = props => {
           {
             props.cards.map(
               (card, index) => {
-                return <Card key={index} card={card}/>
+                return <Card key={index} cardId={card}/>
               }
             )
           }

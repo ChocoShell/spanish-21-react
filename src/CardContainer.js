@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 
+import cards from './cards.json';
+
 import Card from './Card';
 
 class CardContainer extends Component {
   render() {
-    console.log(this.props.card)
+    console.log(`"Shoe: ${this.props.card}"`)
+    const card = cards[this.props.cardId]
     return (
       <Card
-        value={this.props.card && this.props.card.rank}
-        suit={this.props.card && this.props.card.suit}
+        value={card && card.rank}
+        suit={card && card.suit}
       />
     )
   }

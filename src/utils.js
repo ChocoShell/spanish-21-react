@@ -1,3 +1,5 @@
+import cards from './cards.json'
+
 // card utils
 export function shuffle(deck)
 {
@@ -16,31 +18,41 @@ export function shuffle(deck)
   return deck
 }
 
-
-
 export function getDecks(numOfDecks)
-//https://www.thatsoftwaredude.com/content/6196/coding-a-card-deck-in-javascript
 {
-  var deck = [];
-  var suits = ["spades", "diamonds", "clubs", "hearts"];
-  // Spanish 21 doesn't use 10's
-  // var ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K"];
-  var ranks = ["A"];
-
-  for (var d = 0; d < numOfDecks; d++)
+  var decks = []
+  for (var deck = 0; deck < numOfDecks; deck++)
   {
-    for(var i = 0; i < suits.length; i++)
-    {
-      for(var x = 0; x < ranks.length; x++)
-      {
-        var card = {rank: ranks[x], suit: suits[i]};
-        deck.push(card);
-      }
+    for (var i = 0; i < cards.length; i++) {
+      decks.push(i)  
     }
   }
-
-  return deck;
+  return decks;
 }
+// export function getDecks(numOfDecks)
+// //https://www.thatsoftwaredude.com/content/6196/coding-a-card-deck-in-javascript
+// {
+//   var deck = [];
+//   var suits = ["spades", "diamonds", "clubs", "hearts"];
+//   // Spanish 21 doesn't use 10's
+//   var ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K"];
+//   // var ranks = ["A"];
+
+//   for (var d = 0; d < numOfDecks; d++)
+//   {
+//     for(var i = 0; i < suits.length; i++)
+//     {
+//       for(var x = 0; x < ranks.length; x++)
+//       {
+//         var card = {rank: ranks[x], suit: suits[i]};
+//         console.log(`{"rank": "${ranks[x]}", "suit": "${suits[i]}"},`)
+//         deck.push(card);
+//       }
+//     }
+//   }
+
+//   return deck;
+// }
 
 const rank2Value = {
   "A": 11,
@@ -62,7 +74,8 @@ export function sumCards(cardArr)
   var total = 0
   var aces = 0 // count aces
   for (var i = 0; i < cardArr.length; i++) {
-    const rank = cardArr[i].rank
+    const card = cards[cardArr[i]]
+    const rank = card.rank
     if (rank === "A") {
       aces++
     } else {
