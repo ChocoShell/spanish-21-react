@@ -50,18 +50,6 @@ const Spanish21 = () => {
   //   )
   // }
 
-  // dealCardToPlayer(playerId){
-  //   const players = [...this.state.players];
-  //   players[playerId] = {
-  //     ...players[playerId],
-  //     cards: [
-  //       ...players[playerId].cards,
-  //       this.getCardFromShoe()
-  //     ]
-  //   }
-  //   this.setState({players});
-  // }
-
   // reducer(state, action) {
   //   switch (action.type) {
   //     case 'getCardFromShoe': {
@@ -130,9 +118,10 @@ const Spanish21 = () => {
             (player, index) => {
               return (
                 <Player
-                  key={index}
+                  key={index+1}
                   player={player}
-                  id={index}
+                  id={index+1}
+                  dealCard={id => dispatch({type: 'DEAL_CARD_TO_PLAYER', payload: {playerId: id}})}
                 />
               )
             }
