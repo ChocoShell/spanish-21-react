@@ -113,14 +113,14 @@ const Spanish21 = () => {
 
   // Game should have min and max bet
   const { dispatch, state } = useContext(Context);
-  const { shoe, players, card } = state;
+  const { shoe, players } = state;
   return (
     <div className="game">
       <Dealer info={players[0]} />
       <div className="dealerside">    
         <Spanish21Shoe
           shoe={shoe}
-          card={card}
+          card={shoe[shoe.length-1]}
           dealCard={() => dispatch({type: 'DEAL_CARD'})}
         />
       </div>
