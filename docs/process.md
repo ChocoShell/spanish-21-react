@@ -49,3 +49,14 @@ https://github.com/andersontr15/react-hooks-useReducer/blob/master/src/Dashboard
 I moved all the state and reducer logic to App.js instead of Spanish21.js, I may move it back.
 
 Currently, writing a reducer to give a card to a player, I could use the code above and try that but I was thinking there may be a more elegant solution that I am not seeing or haven't learned yet.
+
+
+
+The cards with no set width game me weird expanded cards so for now they are a set length.
+
+I've been using flexbox and ran into some issues with it being too flexible.
+The player components kept chaning size when it replaced the Hit button with the busted message.  I tried flex-grow: 1 but it still moved around the boxes a bit.
+I opted for setting the width to 100/6 = \~16%.
+
+Flexbox did make it easy to do vertical columns as well as move my two player header elements [player total and hit button] to opposite sides of the parent element with `justify-content: space-between`
+
