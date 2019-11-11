@@ -40,6 +40,8 @@ This is how I tried updating the state but it didn't seem to work.
 
 My friend suggested lodash's deepcopy(link to lodash deep copy docs) or hooks(link to hooks) and I decided hooks was the "right" way to do it and I would learn something new.
 
+e1581f829f6ee0d9df6b240de57c069eb4e88f23
+
 I moved on to try with useReducer. Unfortunately, the example on facebook was sparse and it only worked within one file.
 
 So I found this example and followed that.
@@ -50,7 +52,7 @@ I moved all the state and reducer logic to App.js instead of Spanish21.js, I may
 
 Currently, writing a reducer to give a card to a player, I could use the code above and try that but I was thinking there may be a more elegant solution that I am not seeing or haven't learned yet.
 
-
+3b010a95f17cfe0dfcae43a92e73ba7805062568
 
 The cards with no set width game me weird expanded cards so for now they are a set length.
 
