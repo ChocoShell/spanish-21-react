@@ -86,10 +86,13 @@ class Spanish21 extends Component {
   render () {
     return (
       <RootContext.Consumer>
-        {({shoe, players, dealCard, dealCardToPlayer}) => (
+        {({shoe, players, dealCard, dealCardToPlayer, setNextPlayer, activePlayer}) => (
           <div className="game">
             <div>
-              <Dealer info={players[0]} />
+              <Dealer
+                info={players[0]}
+                nextPlayer={() => setNextPlayer()}
+              />
               <div className="dealerside">    
                 <Spanish21Shoe
                   shoe={shoe}
@@ -97,6 +100,7 @@ class Spanish21 extends Component {
                   dealCard={dealCard}
                 />
               </div>
+              {activePlayer}
               <div className="players">
                 {
                   players.slice(1).map(

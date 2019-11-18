@@ -10,6 +10,29 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     
+    this.setActivePlayer = playerId => {
+      this.setState(
+        state => {
+          const players = state.players.map(
+            player => ({
+              ...player,
+              active: false
+            })
+          )
+          players[playerId].active = true
+
+          return {...state, players, activePlayer: playerId}
+        }
+      )
+    }
+
+    this.setNextPlayer = () => {
+      this.setActivePlayer(
+        (this.state.activePlayer + 1) % 
+        this.state.players.length
+      )
+    }
+
     this.dealCard = () => {
       this.setState(
         state => {
@@ -50,8 +73,11 @@ class App extends React.Component {
         {active: false, cards: []},
         {active: false, cards: []},
       ],
+      activePlayer: 0,
       dealCard: this.dealCard,
       dealCardToPlayer: this.dealCardToPlayer,
+      setActivePlayer: this.setActivePlayer,
+      setNextPlayer: this.setNextPlayer
     }
   }
 

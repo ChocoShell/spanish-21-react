@@ -86,3 +86,23 @@ I want to be able to alter my context data, so I'll be using a dynamic context a
 Used old reducer code to recreate the state modifying functions: dealCard and dealCardToPlayer.
 
 Looks pretty messy and nested. I want to try to move the shoe state lower.
+
+I also rearranged the shuffler logic so we start out with empty decks.
+
+Note to self: A changelog would be good.
+
+8b8d22ccee3f4e190660de5b77230b1b0cd6eafd
+
+------
+
+So, I'm back to where I was a few commits ago.  The code is messy but it should make adding more code easier.
+
+Going to add a changelog with the versions instead.
+
+I want to add a betting system but that seems a bit difficult right now so I will create an active player flag which will only allow one person at a time to hit.
+
+I created a setActivePlayer function and wanted to pass a slightly complex function in Spanish21 to the nextPlayer prop of the dealer(where I decided the button would live for now) but realized I couldn't define the function outside of the Context.Consumer so I created another function in App.js called setNextPlayer which will call the setActivePlayer function with the next correct value. (currentActivePlayer + 1 % length of players)
+
+Each player has an active attribute but it is not being used right now. I passed it down from the PlayerContainer file and then it worked.  It's a little clunky and I want this to be automatic so I think I will do that next.  I also want to set the CSS to tell me which player is active.
+
+I should also add a casino table green fur background.

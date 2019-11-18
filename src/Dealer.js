@@ -26,6 +26,7 @@ const Dealer = props => {
         Dealer is Active
         </div>
       }
+      <button onClick={props.nextPlayer}>Go to next player</button>
     </div>
   )
 }

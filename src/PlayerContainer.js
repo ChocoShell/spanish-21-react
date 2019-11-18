@@ -24,13 +24,14 @@ class PlayerContainer extends Component {
   }
 
   render() {
-    const {cards} = this.props.player
+    const {cards, active} = this.props.player
     const total = sumCards(cards)
     const bust = total > 21
     return (
      <Player
       id={this.props.id}
       cards={cards}
+      active={active}
       total={total}
       bust={bust}
       dealCard={this.dealCard}
