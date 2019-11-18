@@ -76,3 +76,13 @@ I decided to put all of my state in one context and split it up as needed.
 I had to change my Spanish21 component back into a stateful component to use context.
 
 I was able to wrap my Spanish21 Component in the RootContext and am able to read the initial state data but not able to alter it when I want to deal cards.
+
+bf14abdc11952d6cae692a4db6b12d7038839017
+
+-------
+
+I want to be able to alter my context data, so I'll be using a dynamic context and add some base functions. [Link to root-context]
+
+Used old reducer code to recreate the state modifying functions: dealCard and dealCardToPlayer.
+
+Looks pretty messy and nested. I want to try to move the shoe state lower.

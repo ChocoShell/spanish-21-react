@@ -84,11 +84,9 @@ class Spanish21 extends Component {
 
   // Game should have min and max bet
   render () {
-    let store = this.context;
-    const {players, shoe} = store;
     return (
       <RootContext.Consumer>
-        {store => (
+        {({shoe, players, dealCard, dealCardToPlayer}) => (
           <div className="game">
             <div>
               <Dealer info={players[0]} />
@@ -96,8 +94,7 @@ class Spanish21 extends Component {
                 <Spanish21Shoe
                   shoe={shoe}
                   card={shoe[shoe.length-1]}
-                  // dealCard={() => dispatch({type: 'DEAL_CARD'})}
-                  dealCard={() => ""}
+                  dealCard={dealCard}
                 />
               </div>
               <div className="players">
@@ -109,8 +106,7 @@ class Spanish21 extends Component {
                           key={index+1}
                           player={player}
                           id={index+1}
-                          // dealCard={id => dispatch({type: 'DEAL_CARD_TO_PLAYER', payload: {playerId: id}})}
-                          dealCard={() => ""}
+                          dealCard={() => dealCardToPlayer(index+1)}
                         />
                       )
                     }

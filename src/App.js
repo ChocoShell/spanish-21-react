@@ -6,54 +6,62 @@ import Spanish21 from './Spanish21';
 import {shuffle, getDecks} from './utils';
 
 
-const store = {
-  shoe: shuffle(getDecks(8)),
-  cardInd: 0,
-  players: [
-    {active: false, cards: []},
-    {active: false, cards: []},
-    {active: false, cards: []},
-    {active: false, cards: []},
-    {active: false, cards: []},
-    {active: false, cards: []},
-    {active: false, cards: []},
-  ],
-}
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.dealCard = () => {
+      this.setState(
+        state => {
+          const shoeCopy = state.shoe.slice()
+          const newShoe = shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
+          shoeCopy.pop()
+          return {...state, shoe: newShoe}
+        }
+      )
+    }
+    this.dealCardToPlayer = playerId => {
+      this.setState(
+        state => {
+          const players = [...state.players]
+          const shoe = [...state.shoe]
 
-// const dealCardReducer = (state, action) => {
-//   switch (action.type) {
-//     case "DEAL_CARD": {
-//       const shoeCopy = state.shoe.slice()
-//       shoeCopy.pop()
-//       const newShoe =  shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
-//       return {...state, shoe: newShoe}
-//     }
-//     case "DEAL_CARD_TO_PLAYER": {
-//       const players = [...state.players]
-//       const shoe = [...state.shoe]
-//       const playerId = action.payload.playerId
+          players[playerId] = {
+            ...players[playerId],
+            cards: [
+              ...players[playerId].cards,
+              shoe.pop()
+            ]
+          }
+          return {...state, players, shoe}
+        }
+      )
+    }
 
-//       players[playerId] = {
-//         ...players[playerId],
-//         cards: [
-//           ...players[playerId].cards,
-//           shoe.pop()
-//         ]
-//       }
-//       return {...state, players, shoe}
-//     }
-//     case "DEAL_CARD_TO_DEALER":
-//     default:
-//       throw new Error();
-//   }
-// }
+    this.state = {
+      shoe: [],
+      cardInd: 0,
+      players: [
+        {active: false, cards: []},
+        {active: false, cards: []},
+        {active: false, cards: []},
+        {active: false, cards: []},
+        {active: false, cards: []},
+        {active: false, cards: []},
+        {active: false, cards: []},
+      ],
+      dealCard: this.dealCard,
+      dealCardToPlayer: this.dealCardToPlayer,
+    }
+  }
 
-function App() {
-  return (
-    <RootContext.Provider value={store}>
-      <Spanish21 />
-    </RootContext.Provider>
-  )
+  render () {
+    return (
+      <RootContext.Provider value={this.state}>
+        <Spanish21 />
+      </RootContext.Provider>
+    )
+  }
 }
 
 export default App;
