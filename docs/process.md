@@ -51,8 +51,7 @@ https://github.com/andersontr15/react-hooks-useReducer/blob/master/src/Dashboard
 I moved all the state and reducer logic to App.js instead of Spanish21.js, I may move it back.
 
 Currently, writing a reducer to give a card to a player, I could use the code above and try that but I was thinking there may be a more elegant solution that I am not seeing or haven't learned yet.
-
-3b010a95f17cfe0dfcae43a92e73ba7805062568
+so, I062568
 
 The cards with no set width game me weird expanded cards so for now they are a set length.
 
@@ -62,3 +61,18 @@ I opted for setting the width to 100/6 = \~16%.
 
 Flexbox did make it easy to do vertical columns as well as move my two player header elements [player total and hit button] to opposite sides of the parent element with `justify-content: space-between`
 
+-----
+I was wondering whether or not my root context should be passed to all child and child-child nodes. That's when zain told me about multiple contexts.  I didn't see it mentioned in the react hooks guide but found it here. https://reactjs.org/docs/context.html#consuming-multiple-contexts
+
+I still wasn't understanding contexts completely, I assumed they were exactly the same as redux but it is like small encapsulated redux states.
+
+After conferring with another developer(ek), we came to the conclusion that useReducer was too complex for my use case right now and I should see how far the Context API would get me.
+https://reactjs.org/docs/context.html#contextprovider
+
+I am considering component composition (where I just pass the component down with the props already initialized) but I do not want to limit myself at this time.  The main difference is that Context allows the entire tree access to the data while the component composition method will only allow the premade component to access the data which is in its props.
+
+I decided to put all of my state in one context and split it up as needed.
+
+I had to change my Spanish21 component back into a stateful component to use context.
+
+I was able to wrap my Spanish21 Component in the RootContext and am able to read the initial state data but not able to alter it when I want to deal cards.
