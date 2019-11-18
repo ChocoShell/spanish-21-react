@@ -105,4 +105,5 @@ I created a setActivePlayer function and wanted to pass a slightly complex funct
 
 Each player has an active attribute but it is not being used right now. I passed it down from the PlayerContainer file and then it worked.  It's a little clunky and I want this to be automatic so I think I will do that next.  I also want to set the CSS to tell me which player is active.
 
-I should also add a casino table green fur background.
+I should also add a casino table green felt
+ background.
