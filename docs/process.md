@@ -127,4 +127,14 @@ We were able to reuse dealCardToPlayer, resetRound and dealRound largely unchang
 
 I added the shoe resetting code from dealCard to dealCardToPlayer so it works with empty shoes.
 
+ec035249679bdca754450a8a3b7c08a363129f28
 
+---
+
+This time, going to just handle some repo hygiene.
+
+- Setting up Changelog.md
+- Setting up version file
+- Setting up release branch for this version.
+
+Hopefully, going forward it will look more clean.  Ideally, I can use my notes to back and go through the commits and label other versions.
