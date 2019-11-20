@@ -16,6 +16,7 @@ class DealerContainer extends Component {
         bust={bust}
         active={active}
         nextPlayer={this.props.nextPlayer}
+        dealRound={this.props.dealRound}
       />
     )
   }

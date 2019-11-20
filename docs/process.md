@@ -105,5 +105,26 @@ I created a setActivePlayer function and wanted to pass a slightly complex funct
 
 Each player has an active attribute but it is not being used right now. I passed it down from the PlayerContainer file and then it worked.  It's a little clunky and I want this to be automatic so I think I will do that next.  I also want to set the CSS to tell me which player is active.
 
-I should also add a casino table green felt
- background.
+I should also add a casino table green felt background.
+
+d513ddefd0da7cfc0ab6c027c438090323521d34
+
+----
+
+Note: Make sure to release a branch or tag with each Changelog update and use the sem verisoning.
+
+I want to have the ability to deal the first cards of a round.
+
+I'll tie it to a button in the dealer component for now and try to reuse some commented code from Spanish21.
+
+[Link to new dealer code here]
+
+We'll define the dealRound function in App.js just like all the others.
+
+It's starting to get pretty long and disjointed so we should think about refactoring. Maybe create a dealCard to Active Player function and swap through all players when dealing cards?
+
+We were able to reuse dealCardToPlayer, resetRound and dealRound largely unchanged! I forgot to add it to dealerContainer so debugging that took me a minute.  Still not sure of the benefits of this container pattern.
+
+I added the shoe resetting code from dealCard to dealCardToPlayer so it works with empty shoes.
+
+

@@ -12,6 +12,8 @@ const RootContext = React.createContext({
   dealCard: () => {},
   dealCardToPlayer: playerId => {},
   setActivePlayer: playerId => {},
+  setNextPlayer: () => {},
+  dealRound: () => {},
 });
 
 export default RootContext;

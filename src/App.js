@@ -36,29 +36,50 @@ class App extends React.Component {
     this.dealCard = () => {
       this.setState(
         state => {
-          const shoeCopy = state.shoe.slice()
+          const shoeCopy = [...state.shoe]
           const newShoe = shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
           shoeCopy.pop()
           return {...state, shoe: newShoe}
         }
       )
     }
+
     this.dealCardToPlayer = playerId => {
       this.setState(
         state => {
           const players = [...state.players]
-          const shoe = [...state.shoe]
+          const shoeCopy = [...state.shoe]
+          const newShoe = shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
 
           players[playerId] = {
             ...players[playerId],
             cards: [
               ...players[playerId].cards,
-              shoe.pop()
+              newShoe.pop()
             ]
           }
-          return {...state, players, shoe}
+          return {...state, players, shoe: newShoe}
         }
       )
+    }
+
+    this.resetRound = () => {
+      this.setState(state => {
+          for (var i = 0; i < state.players.length; i++) {
+            state.players[i].cards = []
+          }
+          return {players: state.players}
+        }
+      )
+    }
+
+    this.dealRound = () => {
+      this.resetRound()
+      for (var j = 0; j < 2; j++) {
+        for (var i = 0; i < this.state.players.length; i++) {
+          this.dealCardToPlayer(i)
+        }
+      }
     }
 
     this.state = {
@@ -77,7 +98,8 @@ class App extends React.Component {
       dealCard: this.dealCard,
       dealCardToPlayer: this.dealCardToPlayer,
       setActivePlayer: this.setActivePlayer,
-      setNextPlayer: this.setNextPlayer
+      setNextPlayer: this.setNextPlayer,
+      dealRound: this.dealRound,
     }
   }
 

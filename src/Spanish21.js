@@ -12,26 +12,7 @@ import Spanish21Shoe from './Spanish21ShoeContainer';
 class Spanish21 extends Component {
 // const Spanish21 = () => {
 
-  // dealRound() {
-  //   this.resetRound()
-  //   for (var j = 0; j < 2; j++) {
-  //     for (var i = 0; i < this.state.players.length; i++) {
-  //       this.dealCardToPlayer(i)
-  //     }
-  //   }
-  // }
 
-  // resetRound() {
-  //   console.log("Reset Call")
-  //   this.setState(state => {
-  //       for (var i = 0; i < state.players.length; i++) {
-  //         state.players[i].cards = []
-  //       }
-  //       console.log(state.players)
-  //       return {players: state.players}
-  //     }
-  //   )
-  // }
 
   // reducer(state, action) {
   //   switch (action.type) {
@@ -86,12 +67,13 @@ class Spanish21 extends Component {
   render () {
     return (
       <RootContext.Consumer>
-        {({shoe, players, dealCard, dealCardToPlayer, setNextPlayer, activePlayer}) => (
+        {({shoe, players, dealCard, dealCardToPlayer, setNextPlayer, activePlayer, dealRound}) => (
           <div className="game">
             <div>
               <Dealer
                 info={players[0]}
-                nextPlayer={() => setNextPlayer()}
+                nextPlayer={setNextPlayer}
+                dealRound={dealRound}
               />
               <div className="dealerside">    
                 <Spanish21Shoe
