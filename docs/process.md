@@ -143,6 +143,10 @@ We'll start this commit as 0.6.0.
 
 I also figured the package.json is fine for the version.
 
+Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.6.0)
+
+and how to [download a repo with a tag](https://stackoverflow.com/questions/791959/download-a-specific-tag-with-git).
+
 ---
 
 Next, I want to hide the dealer's first card when they are not active.
