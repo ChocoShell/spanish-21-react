@@ -51,7 +51,7 @@ https://github.com/andersontr15/react-hooks-useReducer/blob/master/src/Dashboard
 I moved all the state and reducer logic to App.js instead of Spanish21.js, I may move it back.
 
 Currently, writing a reducer to give a card to a player, I could use the code above and try that but I was thinking there may be a more elegant solution that I am not seeing or haven't learned yet.
-so, I062568
+so, I 062568
 
 The cards with no set width game me weird expanded cards so for now they are a set length.
 
@@ -138,3 +138,11 @@ This time, going to just handle some repo hygiene.
 - Setting up release branch for this version.
 
 Hopefully, going forward it will look more clean.  Ideally, I can use my notes to back and go through the commits and label other versions.
+
+We'll start this commit as 0.6.0.
+
+I also figured the package.json is fine for the version.
+
+---
+
+Next, I want to hide the dealer's first card when they are not active.
