@@ -4,3 +4,7 @@
     margin: 10px;
     flex-grow: 3;
 }
+
+.dealer-cards {
+    display: flex;
+}

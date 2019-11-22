@@ -149,4 +149,22 @@ and how to [download a repo with a tag](https://stackoverflow.com/questions/7919
 
 ---
 
-Next, I want to hide the dealer's first card when they are not active.
+Next, I want to hide the dealer's first card when they are not active. We will only show the Dealer's first card when it's their turn to take cards (or if their first 2 cards result in 21).
+
+I passed in a new prop all the way down to dealer and Card called hide which will hide a dealer's card if it's their first card and if they are not active.
+
+I also hid their total away under the same conditions.
+
+I had to wrap the dealer's cards in a div with `display: flex` since they were overlapping and weren't the same size because of the "Hidden Card" placeholder text.
+
+---
+
+I want to add a button for players to hit or stay.  Stay will go to the next player.  After the players go, the dealer will hit until soft 17 (aces high).
+
+Eventually, I want this to do the dealer hits automatically.
+
+I also want to begin adding the money for each player.  The automatic minimum bet seems to be the best option for now.  I will have the minimum and maximum bet be part of the initial state of a game.
+
+Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.7.0)
+
+---

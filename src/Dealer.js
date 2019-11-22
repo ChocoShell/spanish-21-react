@@ -9,16 +9,25 @@ const Dealer = props => {
       {props.bust && "BUSTED"}
       { !props.bust &&
         <div>
-          <div>
-            Dealer: {props.total}
-          </div>
+         {props.active &&
+            <div>
+              Dealer: {props.total}
+            </div>
+          }
+          {!props.active &&
+            <div>
+              Dealer: Hidden
+            </div>
+          }
+          <div className="dealer-cards">
           {
             props.cards.map(
               (card, index) => {
-                return <Card key={index} cardId={card}/>
+                return <Card key={index} cardId={card} hide={index === 0 && !props.active}/>
               }
             )
           }
+          </div>
         </div>
       }
       {props.active &&

@@ -10,6 +10,7 @@ class CardContainer extends Component {
     const card = cards[this.props.cardId]
     return (
       <Card
+        hide={this.props.hide}
         value={card && card.rank}
         suit={card && card.suit}
       />

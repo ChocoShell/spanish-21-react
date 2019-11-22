@@ -82,7 +82,6 @@ class Spanish21 extends Component {
                   dealCard={dealCard}
                 />
               </div>
-              {activePlayer}
               <div className="players">
                 {
                   players.slice(1).map(
