@@ -9,7 +9,12 @@ const Player = props => {
     if (props.bust) {
       message = <div>BUSTED</div>
     } else {
-      message = <button onClick={props.dealCard}> Hit </button>
+      message = (
+        <div>
+          <button onClick={props.hit}> Hit </button>
+          <button onClick={props.stay}> Stay </button>
+        </div>
+      )
     }
   }
   return (

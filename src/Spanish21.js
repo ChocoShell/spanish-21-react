@@ -92,6 +92,7 @@ class Spanish21 extends Component {
                           player={player}
                           id={index+1}
                           dealCard={() => dealCardToPlayer(index+1)}
+                          stay={setNextPlayer}
                         />
                       )
                     }

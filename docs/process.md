@@ -168,3 +168,42 @@ I also want to begin adding the money for each player.  The automatic minimum be
 Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.7.0)
 
 ---
+
+Started by adding a stay button to each player and changing the dealCard prop to hit. Had to wrap the player message in parenthesis since it's now 2 elements.
+
+I realized I already has a setNextPlayer function for the context so I just needed to pass that down to players instead of the dealer. It made this part real easy.
+
+I tested it out a bit and realized that if a player busted, it would not go to the next player.
+
+Making the player go to the next one when they busted seems really tricky with the setup I have. I calculate if they go bust in the player container as a boolean on render.
+
+To fix this, I think I need the dealCardToPlayer function to also figure out if a player has gone bust or not.  I originally didn't want to do this because summing up a list and then checking it the total should be handled by two different  functions.
+
+Now I'm refactoring the dealCardToPlayer to add up all cards for players.
+
+I tried changing the PlayerContainer's dealCard function to this:
+
+    checkTotal() {
+      const total = sumCards(this.props.player.cards)
+      const newState = {total}
+      if (total > 21) {
+        newState.bust = true
+      } else {
+        newState.bust = false
+      }
+      this.setState({
+        ...newState
+      })
+    }
+    dealCard() {
+      this.props.dealCard(this.props.id)
+      this.checkTotal()
+    }
+
+But it would only bust after I have gone 2 cards over the limit instead of one.
+
+I think I could make dealCard take a callback and pass the checkTotal function there but not sure that is the best choice.
+
+Going to do some research and complete this later.
+
+Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.7.1)
