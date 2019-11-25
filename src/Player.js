@@ -5,17 +5,15 @@ import Card from './CardContainer';
 
 const Player = props => {
   let message;
-  if (props.active) {
-    if (props.bust) {
-      message = <div>BUSTED</div>
-    } else {
-      message = (
-        <div>
-          <button onClick={props.hit}> Hit </button>
-          <button onClick={props.stay}> Stay </button>
-        </div>
-      )
-    }
+  if (props.bust) {
+    message = <div>BUSTED</div>
+  } else if (props.active) {
+    message = (
+      <div>
+        <button onClick={props.hit}> Hit </button>
+        <button onClick={props.stay}> Stay </button>
+      </div>
+    )
   }
   return (
     <div className="player" id={props.id}>      

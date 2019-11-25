@@ -3,7 +3,7 @@ import React, {useReducer} from 'react';
 import RootContext from './context/root-context';
 import Spanish21 from './Spanish21';
 
-import {shuffle, getDecks} from './utils';
+import {shuffle, getDecks, sumCards} from './utils';
 
 
 class App extends React.Component {
@@ -47,16 +47,28 @@ class App extends React.Component {
     this.dealCardToPlayer = playerId => {
       this.setState(
         state => {
+          // Make copies of players and show
           const players = [...state.players]
           const shoeCopy = [...state.shoe]
+          // Show logic to reshuffle if shoe is empty
           const newShoe = shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
+          // Adding shoe card to player card array
+          const newCards = [
+            ...players[playerId].cards,
+            newShoe.pop()
+          ]
+          const total = sumCards(newCards)
+          const bust = total > 21
+          // If player goes bust, go to next player.
+          if (bust) {
+            this.setNextPlayer()
+          }
 
           players[playerId] = {
             ...players[playerId],
-            cards: [
-              ...players[playerId].cards,
-              newShoe.pop()
-            ]
+            cards: newCards,
+            total,
+            bust
           }
           return {...state, players, shoe: newShoe}
         }
@@ -86,13 +98,13 @@ class App extends React.Component {
       shoe: [],
       cardInd: 0,
       players: [
-        {active: false, cards: []},
-        {active: false, cards: []},
-        {active: false, cards: []},
-        {active: false, cards: []},
-        {active: false, cards: []},
-        {active: false, cards: []},
-        {active: false, cards: []},
+        {active: false, total: 0, bust: false, cards: []},
+        {active: false, total: 0, bust: false, cards: []},
+        {active: false, total: 0, bust: false, cards: []},
+        {active: false, total: 0, bust: false, cards: []},
+        {active: false, total: 0, bust: false, cards: []},
+        {active: false, total: 0, bust: false, cards: []},
+        {active: false, total: 0, bust: false, cards: []},
       ],
       activePlayer: 0,
       dealCard: this.dealCard,

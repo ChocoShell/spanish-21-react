@@ -10,39 +10,23 @@ class PlayerContainer extends Component {
     this.dealCard = this.dealCard.bind(this)
     this.state = {
       bank: 500,
-      bet: 10, // How to handle doubling?
-      bust: false
+      bet: 10 // How to handle doubling?
     }
-  }
-
-  checkTotal() {
-    const total = sumCards(this.props.player.cards)
-    const newState = {total}
-    if (total > 21) {
-      newState.bust = true
-    } else {
-      newState.bust = false
-    }
-    this.setState({
-      ...newState
-    })
   }
 
   dealCard() {
     this.props.dealCard(this.props.id)
-    this.checkTotal()
   }
 
   render() {
-    const {cards, active} = this.props.player
-    const total = sumCards(cards)
+    const {cards, active, bust, total} = this.props.player
     return (
      <Player
       id={this.props.id}
       cards={cards}
       active={active}
       total={total}
-      bust={this.state.bust}
+      bust={bust}
       hit={this.dealCard}
       stay={this.props.stay}
     />

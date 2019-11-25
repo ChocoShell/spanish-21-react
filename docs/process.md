@@ -24,18 +24,19 @@ I added a different color border to all the components so I can keep track of th
 
 I have all my state in the root level, pulling it out of the child components.  I ran into issues updating the players state since it is so deeply nested.
 
-    dealCardToPlayer(playerId){
-      const players = [...this.state.players];
-      players[playerId] = {
-        ...players[playerId],
-        cards: [
-          ...players[playerId].cards,
-          this.getCardFromShoe()
-        ]
-      }
-      this.setState({players});
-    }
-
+```javascript
+dealCardToPlayer(playerId){
+  const players = [...this.state.players];
+  players[playerId] = {
+    ...players[playerId],
+    cards: [
+      ...players[playerId].cards,
+      this.getCardFromShoe()
+    ]
+  }
+  this.setState({players});
+}
+```
 This is how I tried updating the state but it didn't seem to work.
 
 My friend suggested lodash's deepcopy(link to lodash deep copy docs) or hooks(link to hooks) and I decided hooks was the "right" way to do it and I would learn something new.
@@ -183,22 +184,24 @@ Now I'm refactoring the dealCardToPlayer to add up all cards for players.
 
 I tried changing the PlayerContainer's dealCard function to this:
 
-    checkTotal() {
-      const total = sumCards(this.props.player.cards)
-      const newState = {total}
-      if (total > 21) {
-        newState.bust = true
-      } else {
-        newState.bust = false
-      }
-      this.setState({
-        ...newState
-      })
-    }
-    dealCard() {
-      this.props.dealCard(this.props.id)
-      this.checkTotal()
-    }
+```javascript
+checkTotal() {
+  const total = sumCards(this.props.player.cards)
+  const newState = {total}
+  if (total > 21) {
+    newState.bust = true
+  } else {
+    newState.bust = false
+  }
+  this.setState({
+    ...newState
+  })
+}
+dealCard() {
+  this.props.dealCard(this.props.id)
+  this.checkTotal()
+}
+```
 
 But it would only bust after I have gone 2 cards over the limit instead of one.
 
@@ -207,3 +210,59 @@ I think I could make dealCard take a callback and pass the checkTotal function t
 Going to do some research and complete this later.
 
 Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.7.1)
+
+---
+
+Feeling stuck so I've been procrastinating a lot.
+
+I could have dealCardToPlayer handle everything and add the bust flag to the context but it seems messy.  I don't have a better option so that's what I'm going with.
+
+First, I updated the initial state in app.js with the bust flag.
+
+I may have to add the card total into the context but not right now.
+
+Scratch that.  While adding bust to dealCardToPlayer, I had to add total too.
+
+So, stuffing everything into dealCardToPlayer worked and now it looks like this.
+
+```javascript
+this.dealCardToPlayer = playerId => {
+  this.setState(
+    state => {
+      // Make copies of players and show
+      const players = [...state.players]
+      const shoeCopy = [...state.shoe]
+      // Show logic to reshuffle if shoe is empty
+      const newShoe = shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
+      // Adding shoe card to player card array
+      const newCards = [
+        ...players[playerId].cards,
+        newShoe.pop()
+      ]
+      const total = sumCards(newCards)
+      const bust = total > 21
+      // If player goes bust, go to next player.
+      if (bust) {
+        this.setNextPlayer()
+      }
+      players[playerId] = {
+        ...players[playerId],
+        cards: newCards,
+        total,
+        bust
+      }
+      return {...state, players, shoe: newShoe}
+    }
+  )
+}
+```
+
+In redux (and probably the useReducer hook), I could have something listen to the bust flag and set the next active player that way.
+
+When I get to the refactoring phase after v1, I will have to map out the dependencies of the state changes.
+
+I realized that the dealer had no hit button because I wanted it to automatically trigger it hit 17.  I think I want all players to be inactive then have the game check for who wins and loses.
+
+I am trying to find a way to detect when dealer becomes active.  It might be time to start using hooks.
+
+Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.7.2)
