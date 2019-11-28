@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/spanish-21-react/static/css/main.a32d28e3.chunk.css",
-    "main.js": "/spanish-21-react/static/js/main.87ddd986.chunk.js",
-    "main.js.map": "/spanish-21-react/static/js/main.87ddd986.chunk.js.map",
+    "main.js": "/spanish-21-react/static/js/main.84262abc.chunk.js",
+    "main.js.map": "/spanish-21-react/static/js/main.84262abc.chunk.js.map",
     "runtime-main.js": "/spanish-21-react/static/js/runtime-main.0a69a1ca.js",
     "runtime-main.js.map": "/spanish-21-react/static/js/runtime-main.0a69a1ca.js.map",
-    "static/js/2.69a4e131.chunk.js": "/spanish-21-react/static/js/2.69a4e131.chunk.js",
-    "static/js/2.69a4e131.chunk.js.map": "/spanish-21-react/static/js/2.69a4e131.chunk.js.map",
+    "static/js/2.0c808ac9.chunk.js": "/spanish-21-react/static/js/2.0c808ac9.chunk.js",
+    "static/js/2.0c808ac9.chunk.js.map": "/spanish-21-react/static/js/2.0c808ac9.chunk.js.map",
     "index.html": "/spanish-21-react/index.html",
-    "precache-manifest.2615c968db065f5117fff2986b61b507.js": "/spanish-21-react/precache-manifest.2615c968db065f5117fff2986b61b507.js",
+    "precache-manifest.0781684072947032409ffd40839a2e60.js": "/spanish-21-react/precache-manifest.0781684072947032409ffd40839a2e60.js",
     "service-worker.js": "/spanish-21-react/service-worker.js",
     "static/css/main.a32d28e3.chunk.css.map": "/spanish-21-react/static/css/main.a32d28e3.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.0a69a1ca.js",
-    "static/js/2.69a4e131.chunk.js",
+    "static/js/2.0c808ac9.chunk.js",
     "static/css/main.a32d28e3.chunk.css",
-    "static/js/main.87ddd986.chunk.js"
+    "static/js/main.84262abc.chunk.js"
   ]
 }
