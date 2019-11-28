@@ -27,10 +27,18 @@ class App extends React.Component {
     }
 
     this.setNextPlayer = () => {
-      this.setActivePlayer(
-        (this.state.activePlayer + 1) % 
-        this.state.players.length
-      )
+      const {activePlayer, players} = this.state
+      const nextPlayerId = (activePlayer + 1) % players.length
+      this.setActivePlayer(nextPlayerId)
+      if (nextPlayerId === 0) {
+        this.dealCardsToDealer()
+      }
+    }
+
+    this.dealCardNoState = oldShoe => {
+        const shoe = oldShoe.length === 0 ? shuffle(getDecks(8)) : oldShoe
+        const card = shoe.pop()
+        return {card, shoe}
     }
 
     this.dealCard = () => {
@@ -38,7 +46,7 @@ class App extends React.Component {
         state => {
           const shoeCopy = [...state.shoe]
           const newShoe = shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
-          shoeCopy.pop()
+          newShoe.pop()
           return {...state, shoe: newShoe}
         }
       )
@@ -75,6 +83,37 @@ class App extends React.Component {
       )
     }
 
+    this.dealCardsToDealer = () => {
+      const dealer = this.state.players[0]
+      if (dealer.total < 17) {
+        const newCards = [...dealer.cards]
+        var stateShoe = [...this.state.shoe]
+        while(sumCards(newCards) < 17) {
+          const {shoe, card} = this.dealCardNoState(stateShoe)
+          stateShoe = shoe
+          newCards.push(card)
+        }
+        this.setState(
+          state => {
+            const players = [...state.players]
+            const total = sumCards(newCards)
+            const bust = total > 21
+            players[0] = {
+              ...players[0],
+              cards: newCards,
+              total,
+              bust
+            }
+            return {
+              ...state,
+              players,
+              shoe: stateShoe
+            }
+          }
+        ) 
+      } 
+    }
+
     this.resetRound = () => {
       this.setState(state => {
           for (var i = 0; i < state.players.length; i++) {
@@ -87,6 +126,7 @@ class App extends React.Component {
 
     this.dealRound = () => {
       this.resetRound()
+      this.setActivePlayer(1)
       for (var j = 0; j < 2; j++) {
         for (var i = 0; i < this.state.players.length; i++) {
           this.dealCardToPlayer(i)

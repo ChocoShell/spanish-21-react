@@ -266,3 +266,17 @@ I realized that the dealer had no hit button because I wanted it to automaticall
 I am trying to find a way to detect when dealer becomes active.  It might be time to start using hooks.
 
 Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.7.2)
+
+---
+
+I asked people at work and they suggested doing the dealer card dealing logic when I switch active players, so I'm trying that.
+
+I created a dealCardsToDealer function and wrote a dealCardNoState function which take a shoe and returns an updated shoe and card.  I have a stateful function that does this but it doesn't return the cards so I think I will rewrite a lot of code to use this.
+
+All the other dealCard* functions are pretty similar too and in need of refactoring.
+
+I have also set player1 as the active player when the round resets. This was pretty easy with the setActivePlayer function.  Moving forward I want most development to be like that.
+
+I did forget to update my changelog so I'll call this v0.8.0
+
+Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.8.0)
