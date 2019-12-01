@@ -282,3 +282,5 @@ I did forget to update my changelog so I'll call this v0.8.0
 Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.8.0)
 
 ---
+
+I decided to add bootstrap to make things look nicer
