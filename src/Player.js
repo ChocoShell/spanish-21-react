@@ -6,7 +6,7 @@ import Card from './CardContainer';
 const Player = props => {
   let message;
   if (props.bust) {
-    message = <div>BUSTED</div>
+    message = <h4>BUSTED</h4>
   } else if (props.active) {
     message = (
       <div>
@@ -18,9 +18,9 @@ const Player = props => {
   return (
     <div className="player" id={props.id}>      
       <div className="player-header">
-        <div>
+        <h4>
           Player {props.id}: {props.total}
-        </div>
+        </h4>
         {message}
       </div>
       <div className="cards">

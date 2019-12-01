@@ -283,4 +283,14 @@ Here is the [current release](https://github.com/ChocoShell/spanish-21-react/rel
 
 ---
 
-I decided to add bootstrap to make things look nicer
+I decided to add bootstrap to make things look nicer.
+
+Went with the [Pulse theme](https://bootswatch.com/pulse/) on Bootswatch.
+
+It doesn't look too great now.  I need to decide where on the priority list this will land.
+
+I ran into an issue while discussing this with my [friend](https://www.ekkasit.com/#/) about how my App.js is formed.  It is pretty cluttered.  I want to break down the state functions into dispatch functions with useReducer hooks and move them closer to their components.
+
+I think I should start defining lines between components and workflows.
+
+[workflows.md](./workflows.md)

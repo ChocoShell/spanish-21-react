@@ -9,6 +9,11 @@
 .card-content {
     display: flex;
     align-items: flex-start;
+    justify-content: space-around;
+}
+
+.card-suit {
+
 }
 
 .value {
@@ -17,4 +22,8 @@
 
 .fa-heart {
     color: #d40000;
+}
+
+.hide {
+    display: none;
 }
