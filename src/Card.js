@@ -9,10 +9,7 @@ const Card = props => {
         <div className="value">
           {props.value}
         </div>
-        
-          <img src={`${process.env.PUBLIC_URL}/${props.suit}.png`} alt={props.suit && `${props.suit}`}/>
-        
-        
+        <img width="42px" src={`${process.env.PUBLIC_URL}/img/${props.suit}.png`} alt={props.suit && `${props.suit}`}/>
       </div>
     }
     {props.hide &&

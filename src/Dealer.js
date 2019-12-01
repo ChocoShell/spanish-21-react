@@ -28,8 +28,8 @@ const Dealer = props => {
         </div>
       </div>
       <div>
-        <button onClick={props.nextPlayer}>Go to next player</button>
-        <button onClick={props.dealRound}>Deal Round</button>
+        <button className="btn btn-primary" onClick={props.nextPlayer}>Go to next player</button>
+        <button className="btn btn-info" onClick={props.dealRound}>Deal Round</button>
       </div>
     </div>
   )

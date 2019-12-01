@@ -11,7 +11,7 @@ const Spanish21Shoe = props => {
       <div>
         Cards Left: {props.cardsLeft}
       </div>
-      <button onClick={props.dealCard}>
+      <button className="btn btn-secondary" onClick={props.dealCard}>
         Deal Card
       </button>
     </div>

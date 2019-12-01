@@ -1,6 +1,6 @@
 # Blog Notes
 
-After a weekend at Atlantic City(Link to AC?), I wanted to make my own Spanish 21 game to figure out the optimal strategy through ML.  I first wanted to make the backend in Scala so I cna learn more about it and it makes it easier to do ML stuff there.  Then I thought of doing it in python since I know python more and I can do the front end and back end easier. Then I realized I can have the whole thing on the front end in React, then maybe create a version where I move it to ndoe in the backend and do ML on it in the form of Tensorflow.js(Link to tensorflow).
+After a weekend at Atlantic City(Link to AC?), I wanted to make my own Spanish 21 game to figure out the optimal strategy through ML.  I first wanted to make the backend in Scala so I can learn more about it and it makes it easier to do ML stuff there.  Then I thought of doing it in python since I know python more and I can do the front end and back end easier. Then I realized I can have the whole thing on the front end in React, then maybe create a version where I move it to node in the backend and do ML on it in the form of Tensorflow.js(Link to tensorflow).
 
 Writing this blog as a way to gather my thoughts so this page will change dramatically whenever it updates.
 
@@ -280,3 +280,5 @@ I have also set player1 as the active player when the round resets. This was pre
 I did forget to update my changelog so I'll call this v0.8.0
 
 Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.8.0)
+
+---

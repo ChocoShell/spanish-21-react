@@ -10,8 +10,8 @@ const Player = props => {
   } else if (props.active) {
     message = (
       <div>
-        <button onClick={props.hit}> Hit </button>
-        <button onClick={props.stay}> Stay </button>
+        <button className="btn btn-success" onClick={props.hit}> Hit </button>
+        <button className="btn btn-danger" onClick={props.stay}> Stay </button>
       </div>
     )
   }

@@ -85,6 +85,7 @@ class App extends React.Component {
 
     this.dealCardsToDealer = () => {
       const dealer = this.state.players[0]
+      // Too much logic here? Have to think about refactor.
       if (dealer.total < 17) {
         const newCards = [...dealer.cards]
         var stateShoe = [...this.state.shoe]
