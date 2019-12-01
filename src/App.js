@@ -30,9 +30,6 @@ class App extends React.Component {
       const {activePlayer, players} = this.state
       const nextPlayerId = (activePlayer + 1) % players.length
       this.setActivePlayer(nextPlayerId)
-      if (nextPlayerId === 0) {
-        this.dealCardsToDealer()
-      }
     }
 
     this.dealCardNoState = oldShoe => {
@@ -65,6 +62,7 @@ class App extends React.Component {
             ...players[playerId].cards,
             newShoe.pop()
           ]
+          // Next target for hook
           const total = sumCards(newCards)
           const bust = total > 21
           // If player goes bust, go to next player.
@@ -153,6 +151,7 @@ class App extends React.Component {
       setActivePlayer: this.setActivePlayer,
       setNextPlayer: this.setNextPlayer,
       dealRound: this.dealRound,
+      dealCardsToDealer: this.dealCardsToDealer,
     }
   }
 

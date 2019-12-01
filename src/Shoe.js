@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import './Spanish21Shoe.css';
+import './Shoe.css';
 
 import Card from './CardContainer.js'
 
 
-const Spanish21Shoe = props => {
+const Shoe = props => {
   return (
     <div className="spanish21-shoe">
       <Card cardId={props.currentCard}/>
@@ -18,4 +18,4 @@ const Spanish21Shoe = props => {
   )
 }
 
-export default Spanish21Shoe;
+export default Shoe;

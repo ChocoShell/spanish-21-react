@@ -294,3 +294,26 @@ I ran into an issue while discussing this with my [friend](https://www.ekkasit.c
 I think I should start defining lines between components and workflows.
 
 [workflows.md](./workflows.md)
+
+Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.9.1)
+
+---
+
+I refactored a lot of code to use context.  Not entirely sure how I feel about it.  It is cleaner but I think I might get lost looking for variables.  Destructuring makes it difficult to find where things are instantiated.
+
+I cut down on a lot of code in Spanish21.  Shoe now has no props! I also only pass in id's for players and the dealer.
+
+I was surprised how smooth the refactor went.  Most of the stuff just worked.
+It also helped me see Card component in a different light since I couldn't use context for that, it's value isn't determined by the state.
+
+I learned from [Ryan Florence's Hooks Demo](https://www.youtube.com/watch?v=dpw9EHDh2bM) that we can use hooks and useEffect as componentDidUpdate, so I want to use that when the dealer becomes active.
+
+Using useEffect, I was able to move down dealCardsToDealer into the DealerContainer function and remove it from the setNextPlayer function in App.js, slowly moving functions away from the root file.
+
+I think I can make my own hook with the useEffect. It worked!
+
+I had a little block where I couldn't figure out how to call dealCardsToDealer in the hook but then I remembered that you can use hooks in hooks so I was able to use useContext to fetch the proper function.
+
+I am starting to think that any if statements in my state functions can be replaced with hooks.
+
+Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.10.0)

@@ -1,37 +1,28 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 
 import Player from './Player';
 import {sumCards} from './utils';
+import RootContext from './context/root-context';
 
-class PlayerContainer extends Component {
-
-  constructor(props) {
-    super(props)
-    this.dealCard = this.dealCard.bind(this)
-    this.state = {
-      bank: 500,
-      bet: 10 // How to handle doubling?
-    }
-  }
-
-  dealCard() {
-    this.props.dealCard(this.props.id)
-  }
-
-  render() {
-    const {cards, active, bust, total} = this.props.player
-    return (
-     <Player
-      id={this.props.id}
+const PlayerContainer = ({id}) => {
+  const {
+    dealCard,
+    setNextPlayer,
+    players,
+  } = useContext(RootContext)
+  const {cards, active, bust, total} = players[id]
+  const dealCardToMe = () => dealCard(id)
+  return (
+    <Player
+      id={id}
       cards={cards}
       active={active}
-      total={total}
       bust={bust}
-      hit={this.dealCard}
-      stay={this.props.stay}
+      total={total}
+      hit={dealCardToMe}
+      stay={setNextPlayer}
     />
-    )
-  }
+  )
 }
 
 export default PlayerContainer;

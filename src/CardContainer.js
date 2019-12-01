@@ -1,21 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import cards from './cards.json';
-
 import Card from './Card';
 
-class CardContainer extends Component {
-  render() {
-    console.log(`"Shoe: ${this.props.card}"`)
-    const card = cards[this.props.cardId]
-    return (
-      <Card
-        hide={this.props.hide}
-        value={card && card.rank}
-        suit={card && card.suit}
-      />
-    )
-  }
+const CardContainer = ({cardId, hide}) => {
+  const card = cards[cardId]
+  return (
+    <Card
+      hide={hide}
+      value={card && card.rank}
+      suit={card && card.suit}
+    />
+  )
 }
 
 export default CardContainer;

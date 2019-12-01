@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 
 import RootContext from './context/root-context';
 
@@ -6,13 +6,20 @@ import './Spanish21.css';
 
 import Player from './PlayerContainer';
 import Dealer from './DealerContainer';
-import Spanish21Shoe from './Spanish21ShoeContainer';
+import Shoe from './ShoeContainer';
 
 
-class Spanish21 extends Component {
-// const Spanish21 = () => {
-
-
+const Spanish21 = () => {
+  const {
+    shoe,
+    players,
+    activePlayer,
+    // Functions
+    dealCard,
+    dealCardToPlayer,
+    dealRound,
+    setNextPlayer,
+  } = useContext(RootContext)
 
   // reducer(state, action) {
   //   switch (action.type) {
@@ -36,7 +43,7 @@ class Spanish21 extends Component {
   // }
   //<Dealer />
   // <div className="dealerside">    
-  //         <Spanish21Shoe
+  //         <Shoe
   //           shoe={shoe}
   //           card={card}
   //           dealCard={card}
@@ -64,49 +71,23 @@ class Spanish21 extends Component {
   //       </div>
 
   // Game should have min and max bet
-  render () {
-    return (
-      <RootContext.Consumer>
-        {({shoe, players, dealCard, dealCardToPlayer, setNextPlayer, activePlayer, dealRound}) => (
-          <div className="game">
-            <div>
-              <Dealer
-                info={players[0]}
-                nextPlayer={setNextPlayer}
-                dealRound={dealRound}
-              />
-              <div className="dealerside">    
-                <Spanish21Shoe
-                  shoe={shoe}
-                  card={shoe[shoe.length-1]}
-                  dealCard={dealCard}
-                />
-              </div>
-              <div className="players">
-                {
-                  players.slice(1).map(
-                    (player, index) => {
-                      return (
-                        <Player
-                          key={index+1}
-                          player={player}
-                          id={index+1}
-                          dealCard={() => dealCardToPlayer(index+1)}
-                          stay={setNextPlayer}
-                        />
-                      )
-                    }
-                  )
-                }
-              </div>
-            </div>
-          </div>
-        )}
-      </RootContext.Consumer>
-    );
-  }
+  return (
+    <div className="game">
+      <div>
+        <Dealer id={0} />
+        <div className="dealerside">    
+          <Shoe />
+        </div>
+        <div className="players">
+          {
+            players.slice(1).map(
+              (_, index) => <Player key={index+1} id={index+1} />
+            )
+          }
+        </div>
+      </div>
+    </div>
+  )
 }
-
-Spanish21.contextType = RootContext;
 
 export default Spanish21;
