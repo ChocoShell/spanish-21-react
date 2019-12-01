@@ -2,7 +2,9 @@
     display: inline-block;
     outline: 2px solid black;
     padding: 5px;
-    width: 100px;
+    width: 110px;
+    border-radius: 0.5em;
+    border-color: black;
 }
 
 .card-content {
@@ -12,4 +14,8 @@
 
 .value {
     font-size: 70px;
+}
+
+.fa-heart {
+    color: #d40000;
 }
