@@ -1,4 +1,4 @@
-import cards from './cards.json'
+import {cardData} from './Card';
 
 // card utils
 export function shuffle(deck)
@@ -23,7 +23,7 @@ export function getDecks(numOfDecks)
   var decks = []
   for (var deck = 0; deck < numOfDecks; deck++)
   {
-    for (var i = 0; i < cards.length; i++) {
+    for (var i = 0; i < cardData.length; i++) {
       decks.push(i)  
     }
   }
@@ -74,7 +74,7 @@ export function sumCards(cardArr)
   var total = 0
   var aces = 0 // count aces
   for (var i = 0; i < cardArr.length; i++) {
-    const card = cards[cardArr[i]]
+    const card = cardData[cardArr[i]]
     const rank = card.rank
     if (rank === "A") {
       aces++

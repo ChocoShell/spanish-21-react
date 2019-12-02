@@ -1,7 +1,7 @@
 import React from 'react';
 import './Player.css';
 
-import Card from './CardContainer';
+import Card from 'Card';
 
 const Player = props => {
   let message;

@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './Shoe.css';
 
-import Card from './CardContainer.js'
+import Card from 'Card'
 
 
 const Shoe = props => {

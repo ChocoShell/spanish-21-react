@@ -1,7 +1,7 @@
 import React from 'react';
 import './Dealer.css';
 
-import Card from './CardContainer';
+import Card from 'Card';
 
 const Dealer = props => {
   return (
@@ -28,7 +28,7 @@ const Dealer = props => {
         </div>
       </div>
       <div>
-        <button className="btn btn-primary" onClick={props. nextPlayer}>Go to next player</button>
+        <button className="btn btn-primary" onClick={props.nextPlayer}>Go to next player</button>
         <button className="btn btn-info" onClick={props.dealRound}>Deal Round</button>
       </div>
     </div>

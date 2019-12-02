@@ -1,25 +1,22 @@
-import React, { Component, useContext } from 'react';
+import React, { useContext } from 'react';
 
-import RootContext from './context/root-context';
+import PlayerContext from 'context/player-context';
+import CardContext from 'context/card-context';
+
+import Player from 'Player';
+import Dealer from 'Dealer';
+import Shoe from 'Shoe';
 
 import './Spanish21.css';
 
-import Player from './PlayerContainer';
-import Dealer from './DealerContainer';
-import Shoe from './ShoeContainer';
-
 
 const Spanish21 = () => {
-  const {
-    shoe,
-    players,
-    activePlayer,
-    // Functions
-    dealCard,
-    dealCardToPlayer,
-    dealRound,
-    setNextPlayer,
-  } = useContext(RootContext)
+  const {players: cardPlayers} = useContext(CardContext)
+  const {players: playerPlayers} = useContext(PlayerContext)
+
+  const players = cardPlayers.map((v, ind) => {
+    return {...playerPlayers[ind], active: v.active}
+  })
 
   // reducer(state, action) {
   //   switch (action.type) {
@@ -70,6 +67,12 @@ const Spanish21 = () => {
   //         </button>
   //       </div>
 
+
+  // Dealer, Player, Shoe
+  // Do components care about each other? Not really
+  // Players can have player state, dealer can have dealer state
+  // How do they get card from shoe's state?
+  // https://stackoverflow.com/questions/54273673/react-setstate-callback-return-value/54273694#54273694
   // Game should have min and max bet
   return (
     <div className="game">

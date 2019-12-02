@@ -317,3 +317,38 @@ I had a little block where I couldn't figure out how to call dealCardsToDealer i
 I am starting to think that any if statements in my state functions can be replaced with hooks.
 
 Here is the [current release](https://github.com/ChocoShell/spanish-21-react/releases/tag/v0.10.0)
+
+---
+
+I decided to move components into their own folders and added a jsconfig file so I can do absolute imports from src/.
+
+I want to start splitting up the state functions in App.js into their own contexts.
+
+I'm thinking these are the context I want to split up for now:
+- Player: In charge of active player, setting next active player, setting any active player, resetting all players as inactive, and controlling player state.
+- Card: dealCard* functions, shoe
+
+Not sure where to put player cards.  It's player data so I thought in the first state but I believe the second one makes more sense. Perhaps 2 player states, one for cards, bust, and total and the other for the active flag.
+
+The context splitting went pretty well so far.  I replace the RootContext Producer with the PlayerContext and CardContext Producers and replaced RootContext everywhere with CardContext and PlayerContext.
+
+I am having trouble with the player Hit button.
+
+Nevermind, I accidently used dealCard and not dealCardToPlayer.
+
+Next big step, split state into cardState and playerState. Declaring the state and passing it into the producers is easy, changing all the functions to use the new states will be hard.
+
+App.js will no longer have state and it will all be handled by contexts, so this.setState will no longer work.
+
+- setNextPlayer: replace this.state with this.playerState
+- dealRound: replace with this.cardState
+
+After seeing how the context functions use this.setState, I decided to stay with the one state total.
+
+I'm going to stop with the context management for now and move on to removing conditional state function calls with custom hooks.
+
+Places where we have conditional function calls:
+- dealCardToPlayer -> setNextPlayer if bust
+- possibly dealRound
+
+I finally made dealCard return a value and rewrote dealCardToPlayer to use it. It brought up a new issue where it complains about the call to setNextPlayer which I want to change anyway.  Removed dealcardnostate

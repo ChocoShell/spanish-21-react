@@ -1,9 +1,11 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 
-import RootContext from './context/root-context';
-import Spanish21 from './Spanish21';
+import PlayerContext from 'context/player-context';
+import CardContext from 'context/card-context';
 
-import {shuffle, getDecks, sumCards} from './utils';
+import {shuffle, getDecks, sumCards} from 'utils';
+
+import Spanish21 from 'Spanish21';
 
 
 class App extends React.Component {
@@ -32,36 +34,35 @@ class App extends React.Component {
       this.setActivePlayer(nextPlayerId)
     }
 
-    this.dealCardNoState = oldShoe => {
-        const shoe = oldShoe.length === 0 ? shuffle(getDecks(8)) : oldShoe
-        const card = shoe.pop()
-        return {card, shoe}
-    }
-
     this.dealCard = () => {
-      this.setState(
-        state => {
-          const shoeCopy = [...state.shoe]
-          const newShoe = shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
-          newShoe.pop()
-          return {...state, shoe: newShoe}
-        }
-      )
+      // pops and returns last card
+      let card
+      return new Promise(resolve => {
+        this.setState(
+          state => {
+            const shoeCopy = [...state.shoe]
+            const newShoe = shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
+            card = newShoe.pop()
+            return {...state, shoe: newShoe}
+          },
+          () => resolve(card)
+        )
+      })
     }
 
-    this.dealCardToPlayer = playerId => {
+    this.dealCardToPlayer = async (playerId) => {
+      const card = await this.dealCard()
       this.setState(
         state => {
           // Make copies of players and show
           const players = [...state.players]
-          const shoeCopy = [...state.shoe]
-          // Show logic to reshuffle if shoe is empty
-          const newShoe = shoeCopy.length === 0 ? shuffle(getDecks(8)) : shoeCopy
+          
           // Adding shoe card to player card array
           const newCards = [
             ...players[playerId].cards,
-            newShoe.pop()
+            card
           ]
+
           // Next target for hook
           const total = sumCards(newCards)
           const bust = total > 21
@@ -76,20 +77,18 @@ class App extends React.Component {
             total,
             bust
           }
-          return {...state, players, shoe: newShoe}
+          return {...state, players}
         }
       )
     }
 
-    this.dealCardsToDealer = () => {
+    this.dealCardsToDealer = async () => {
       const dealer = this.state.players[0]
       // Too much logic here? Have to think about refactor.
       if (dealer.total < 17) {
         const newCards = [...dealer.cards]
-        var stateShoe = [...this.state.shoe]
         while(sumCards(newCards) < 17) {
-          const {shoe, card} = this.dealCardNoState(stateShoe)
-          stateShoe = shoe
+          const card = await this.dealCard()
           newCards.push(card)
         }
         this.setState(
@@ -105,8 +104,7 @@ class App extends React.Component {
             }
             return {
               ...state,
-              players,
-              shoe: stateShoe
+              players
             }
           }
         ) 
@@ -125,7 +123,6 @@ class App extends React.Component {
 
     this.dealRound = () => {
       this.resetRound()
-      this.setActivePlayer(1)
       for (var j = 0; j < 2; j++) {
         for (var i = 0; i < this.state.players.length; i++) {
           this.dealCardToPlayer(i)
@@ -156,10 +153,40 @@ class App extends React.Component {
   }
 
   render () {
+    const {
+      shoe,               // card
+      cardInd,            // card
+      players,            // both
+      activePlayer,       // player
+      dealCard,           // card
+      dealCardToPlayer,   // card
+      setActivePlayer,    // player
+      setNextPlayer,      // player
+      dealRound,          // card
+      dealCardsToDealer,  // card
+    } = this.state
+
+    const playerState = {
+      activePlayer,
+      players,
+      setActivePlayer,
+      setNextPlayer,
+    }
+    const cardState = {
+      shoe,
+      cardInd,
+      players,
+      dealCard,
+      dealCardToPlayer,
+      dealRound,
+      dealCardsToDealer,
+    }
     return (
-      <RootContext.Provider value={this.state}>
-        <Spanish21 />
-      </RootContext.Provider>
+      <PlayerContext.Provider value={playerState}>
+        <CardContext.Provider value={cardState}>
+          <Spanish21 />
+        </CardContext.Provider>
+      </PlayerContext.Provider>
     )
   }
 }

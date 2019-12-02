@@ -4,16 +4,14 @@ const state = {
   shoe: null,
   cardInd: 0,
   players: [],
-  activePlayer: 0,
 }
 
-const RootContext = React.createContext({
+const CardContext = React.createContext({
   ...state,
   dealCard: () => {},
   dealCardToPlayer: playerId => {},
-  setActivePlayer: playerId => {},
-  setNextPlayer: () => {},
+  dealCardsToDealer: () => {},
   dealRound: () => {},
 });
 
-export default RootContext;
+export default CardContext;

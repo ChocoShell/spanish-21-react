@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import RootContext from './context/root-context';
+import CardContext from 'context/card-context';
 import Shoe from './Shoe';
 
 
@@ -8,7 +8,7 @@ const ShoeContainer = () => {
   const {
     dealCard,
     shoe,
-  } = useContext(RootContext)
+  } = useContext(CardContext)
 
   const currentCard = shoe[shoe.length-1]
 
